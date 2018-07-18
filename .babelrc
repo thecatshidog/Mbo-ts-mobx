@@ -1,0 +1,44 @@
+{
+  "env": {
+    "production": {
+      "presets": [
+        ["@babel/env", {
+          "modules": "commonjs",
+          "targets": {
+              "browsers": ["> 1%", "last 2 versions", "not ie <= 8"]
+          },
+          "useBuiltIns": false,
+          "debug": false
+        }],
+        "@babel/preset-typescript",
+        "@babel/preset-react"
+      ]
+    },
+    "development": {
+      "presets": [
+        ["@babel/env", {
+          "modules": "commonjs",
+          "targets": {
+              "browsers": ["> 1%", "last 2 versions", "not ie <= 8"]
+          },
+          "useBuiltIns": false,
+          "debug": true
+        }],
+        "@babel/preset-typescript",
+        "@babel/preset-react"
+      ],
+      "plugins": [
+        "react-hot-loader/babel"
+      ]
+    }
+  },
+  "plugins": [
+    ["@babel/proposal-decorators", { "legacy": true }],
+    ["@babel/proposal-class-properties", { "loose": true }],
+    ["@babel/plugin-transform-runtime", {
+      "moduleName": "@babel/runtime"
+    }],
+    "@babel/proposal-object-rest-spread",
+    "@babel/syntax-dynamic-import"
+  ]
+}
