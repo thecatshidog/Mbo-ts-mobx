@@ -1,9 +1,13 @@
 import React from 'react';
-import { hot } from 'react-hot-loader';
 import Routes from '@/routes';
-// import CSSModule from '@/utils/cssmodule';
-// import * as styles from './styles/app.scss';
+import { Provider } from 'mobx-react';
+import stores from '@/stores';
+import { hot } from 'react-hot-loader/root';
 
-const App = () => <Routes />;
+const App = () => (
+  <Provider store={stores}>
+    <Routes />
+  </Provider>
+);
 
-export default hot(module)(App);
+export default (process.env.NODE_ENV === 'development' ? hot(App) : App);

@@ -9,7 +9,7 @@ const ManifestPlugin = require('webpack-manifest-plugin');
 const BundleAnalyzerReport = require('webpack-bundle-analyzer');
 const ModuleConcatenationPlugin = require('webpack/lib/optimize/ModuleConcatenationPlugin');
 
-function resolve (dir) {
+function resolve(dir) {
   return path.join(__dirname, '..', dir)
 }
 
@@ -20,9 +20,8 @@ const webpackConfig = {
   output: {
     path: path.resolve(__dirname, 'dist'),
     filename: '[name].[hash:7].js',
-    publicPath: process.env.NODE_ENV === 'production'
-                ? config.build.assetsPublicPath
-                : config.dev.assetsPublicPath
+    publicPath: process.env.NODE_ENV === 'production' ?
+      config.build.assetsPublicPath : config.dev.assetsPublicPath
   },
   resolve: {
     extensions: ['.tsx', '.ts', '.js', '.jsx', '.json'],
@@ -33,30 +32,36 @@ const webpackConfig = {
   },
   module: {
     rules: [{
-      test: /\.(js|jsx|ts|tsx)$/,
-      use: 'babel-loader',
-      exclude: /node_modules/
-    },
-    {
-      test: /\.(png|jpe?g|gif|svg)$/,
-      use: [{
-        loader: 'url-loader',
-        options: {
-          limit: 10000,
-          name: utils.assetsPath('imgs/[name].[hash:7].[ext]')
-        }
-      }]
-    },
-    {
-      test: /\.(woff2?|eot|ttf|otf)$/,
-      use: [{
-        loader: 'url-loader',
-        options: {
-          limit: 10000,
-          name: utils.assetsPath('fonts/[name].[hash:7].[ext]')
-        }
-      }]
-    }]
+        test: /\.tsx?$/,
+        use: 'ts-loader',
+        enforce: 'pre',
+        exclude: /node_modules/
+      }, {
+        test: /\.(js|ts)x?$/,
+        use: 'babel-loader',
+        exclude: /node_modules/,
+      },
+      {
+        test: /\.(png|jpe?g|gif|svg)$/,
+        use: [{
+          loader: 'url-loader',
+          options: {
+            limit: 10000,
+            name: utils.assetsPath('imgs/[name].[hash:7].[ext]')
+          }
+        }]
+      },
+      {
+        test: /\.(woff2?|eot|ttf|otf)$/,
+        use: [{
+          loader: 'url-loader',
+          options: {
+            limit: 10000,
+            name: utils.assetsPath('fonts/[name].[hash:7].[ext]')
+          }
+        }]
+      }
+    ]
   },
   // manifest文件是将每次打包都会更改的东西单独提取出来，保证没有更改的代码无需重新打包，这样可以加快打包速度，其实就是一个js模块的load加载器
   // manifest就是webpack运行时代码块部分
@@ -84,9 +89,8 @@ const webpackConfig = {
       // 不允许遗留任何“旧的” ServiceWorkers
       clientsClaim: true,
       skipWaiting: true
-      }),
-      new ManifestPlugin(),
-      new webpack.NamedModulesPlugin(),
+    }),
+    new ManifestPlugin(),
   ]
 }
 

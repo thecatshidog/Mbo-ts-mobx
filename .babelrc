@@ -5,7 +5,7 @@
         ["@babel/env", {
           "modules": "commonjs",
           "targets": {
-              "browsers": ["> 1%", "last 2 versions", "not ie <= 8"]
+            "browsers": ["> 1%", "last 2 versions", "not ie <= 8"]
           },
           "useBuiltIns": false,
           "debug": false
@@ -19,7 +19,7 @@
         ["@babel/env", {
           "modules": "commonjs",
           "targets": {
-              "browsers": ["> 1%", "last 2 versions", "not ie <= 8"]
+            "browsers": ["> 1%", "last 2 versions", "not ie <= 8"]
           },
           "useBuiltIns": false,
           "debug": true
@@ -33,8 +33,13 @@
     }
   },
   "plugins": [
-    ["@babel/proposal-decorators", { "legacy": true }],
-    ["@babel/proposal-class-properties", { "loose": true }],
+    "react-hot-loader/babel",
+    ["@babel/proposal-decorators", {
+      "legacy": true
+    }],
+    ["@babel/proposal-class-properties", {
+      "loose": true
+    }],
     ["@babel/plugin-transform-runtime", {
       "moduleName": "@babel/runtime"
     }],
