@@ -6,6 +6,7 @@ this is typescript web start,support hot-reload,react-reouter4,prettier,mobx,Cod
 
 ### 目标
 
+- 删除 tslint 规则，转而使用 eslint 的方式进行代码检测，原因是 tslint 作者已经宣布不维护，转而使用 eslint
 - 使用 react16 版本之后的新特性去完成代码分割特性，不在引入 react-loadable 的包
 - 降低代码包的体积，让初始化的代码包体积更友好，能够更快速的加载出来我们需要的代码
 - 集成我的 UI 组件库，这个会在另一个仓库中做成一个优秀的插件库，然后能够快速集成进来
